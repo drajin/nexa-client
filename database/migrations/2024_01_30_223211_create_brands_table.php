@@ -14,7 +14,7 @@ return new class extends Migration {
             $table->uuid('id')->primary();
             $table->string('name');
             $table->text('description');
-            $table->text('logo_base64');
+            $table->binary('logo');
             $table->string('status');
             $table->timestamps();
             $table->softDeletes();
