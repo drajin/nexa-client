@@ -4,15 +4,12 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-return new class extends Migration
-{
+return new class extends Migration {
     /**
      * Run the migrations.
      */
     public function up(): void
     {
-        Schema::disableForeignKeyConstraints();
-
         Schema::create('addresses', function (Blueprint $table) {
             $table->uuid('id')->primary();
             $table->string('addressable_type');
@@ -25,8 +22,6 @@ return new class extends Migration
             $table->string('post_box')->nullable();
             $table->timestamps();
         });
-
-        Schema::enableForeignKeyConstraints();
     }
 
     /**
