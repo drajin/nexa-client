@@ -16,7 +16,7 @@ class GenderSeeder extends Seeder
         $genders = [
             'MALE',
             'FEMALE',
-            'DIVERSE'
+            'DIVERSE',
         ];
 
         foreach ($genders as $gender) {
