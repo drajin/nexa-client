@@ -2,8 +2,8 @@
 
 namespace App\Filament\Resources;
 
+use App\Models\Gender;
 use App\Filament\Resources\CustomerResource\Pages;
-use App\Filament\Resources\CustomerResource\RelationManagers;
 use App\Models\Customer;
 use Filament\Forms;
 use Filament\Forms\Form;
@@ -24,7 +24,7 @@ class CustomerResource extends Resource
         return $form
             ->schema([
                 Forms\Components\Select::make('gender_id')
-                    ->relationship('gender', 'id')
+                    ->options(Gender::query()->pluck('type', 'id'))
                     ->required(),
                 Forms\Components\TextInput::make('first_name')
                     ->required()
@@ -43,14 +43,11 @@ class CustomerResource extends Resource
     {
         return $table
             ->columns([
-                Tables\Columns\TextColumn::make('id')
-                    ->label('ID')
-                    ->searchable(),
-                Tables\Columns\TextColumn::make('gender.id')
-                    ->searchable(),
                 Tables\Columns\TextColumn::make('first_name')
                     ->searchable(),
                 Tables\Columns\TextColumn::make('last_name')
+                    ->searchable(),
+                Tables\Columns\TextColumn::make('gender.type')
                     ->searchable(),
                 Tables\Columns\TextColumn::make('birthday')
                     ->date()
