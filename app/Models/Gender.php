@@ -2,22 +2,22 @@
 
 namespace App\Models;
 
+use App\Casts\Lowercase;
 use Illuminate\Database\Eloquent\Concerns\HasUuids;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
-use Illuminate\Database\Eloquent\Relations\HasOne;
-use App\Enums\Gender as GenderEnum;
+use Illuminate\Database\Eloquent\Relations\HasMany;
 
 class Gender extends Model
 {
     use HasFactory, HasUuids;
 
     protected $casts = [
-        'type' => GenderEnum::class,
+        'type' => Lowercase::class,
     ];
 
-    public function customer(): HasOne
+    public function customers(): HasMany
     {
-        return $this->hasOne(Customer::class);
+        return $this->hasMany(Customer::class);
     }
 }
