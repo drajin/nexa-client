@@ -2,6 +2,7 @@
 
 namespace App\Models;
 
+use App\Enums\Gender as GenderEnum;
 use Illuminate\Database\Eloquent\Concerns\HasUuids;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
@@ -15,6 +16,7 @@ class Customer extends Model
 
     protected $casts = [
         'birthday' => 'date',
+        'type' => GenderEnum::class,
     ];
 
     public function orders(): HasMany
