@@ -2,6 +2,7 @@
 
 namespace App\Filament\Resources;
 
+use App\Filament\Resources\CustomerResource\RelationManagers\AddressRelationManager;
 use App\Models\Gender;
 use App\Filament\Resources\CustomerResource\Pages;
 use App\Models\Customer;
@@ -23,15 +24,16 @@ class CustomerResource extends Resource
     {
         return $form
             ->schema([
-                Forms\Components\Select::make('gender_id')
-                    ->options(Gender::query()->pluck('type', 'id'))
-                    ->required(),
                 Forms\Components\TextInput::make('first_name')
                     ->required()
                     ->maxLength(255),
                 Forms\Components\TextInput::make('last_name')
                     ->required()
                     ->maxLength(255),
+                Forms\Components\Select::make('gender_id')
+                    ->options(Gender::query()->pluck('type', 'id'))
+                    ->label('Gender')
+                    ->required(),
                 Forms\Components\DatePicker::make('birthday'),
                 Forms\Components\TextInput::make('preferred_contact_method')
                     ->required()
@@ -86,7 +88,7 @@ class CustomerResource extends Resource
     public static function getRelations(): array
     {
         return [
-            //
+            AddressRelationManager::class,
         ];
     }
 
