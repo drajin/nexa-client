@@ -13,6 +13,6 @@ class Address extends Model
 
     public function addressable(): BelongsTo
     {
-        return $this->belongsTo(Addressable::class);
+        return $this->morphTo();
     }
 }
