@@ -4,8 +4,10 @@ namespace App\Filament\Resources;
 
 use App\Filament\Resources\InteractionResource\Pages;
 use App\Filament\Resources\InteractionResource\RelationManagers;
+use App\Models\Customer;
 use App\Models\Interaction;
 use Filament\Forms;
+use Filament\Forms\Components\Select;
 use Filament\Forms\Form;
 use Filament\Resources\Resource;
 use Filament\Tables;
@@ -25,6 +27,7 @@ class InteractionResource extends Resource
             ->schema([
                 Forms\Components\Select::make('customer_id')
                     ->relationship('customer', 'id')
+                    ->searchable()
                     ->required(),
                 Forms\Components\Select::make('note_id')
                     ->relationship('note', 'title'),
@@ -42,6 +45,7 @@ class InteractionResource extends Resource
                     ->label('ID')
                     ->searchable(),
                 Tables\Columns\TextColumn::make('customer.id')
+                    ->searchable()
                     ->searchable(),
                 Tables\Columns\TextColumn::make('note.title')
                     ->searchable(),
