@@ -42,6 +42,9 @@ class NoteResource extends Resource
                     ->searchable(),
                 Tables\Columns\TextColumn::make('title')
                     ->searchable(),
+                Tables\Columns\TextColumn::make('body')
+                    ->label('body')
+                    ->words(5),
                 Tables\Columns\TextColumn::make('created_at')
                     ->dateTime()
                     ->sortable()
