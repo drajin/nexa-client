@@ -14,6 +14,11 @@ class AddressRelationManager extends RelationManager
 {
     protected static string $relationship = 'address';
 
+    public function isReadOnly(): bool
+    {
+        return false;
+    }
+
     public function form(Form $form): Form
     {
         return $form
