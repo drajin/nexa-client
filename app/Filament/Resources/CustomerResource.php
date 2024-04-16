@@ -3,6 +3,7 @@
 namespace App\Filament\Resources;
 
 use App\Filament\Resources\CustomerResource\RelationManagers\AddressRelationManager;
+use App\Filament\Resources\CustomerResource\RelationManagers\InteractionsRelationManager;
 use App\Models\Gender;
 use App\Filament\Resources\CustomerResource\Pages;
 use App\Models\Customer;
@@ -45,6 +46,9 @@ class CustomerResource extends Resource
     {
         return $table
             ->columns([
+                Tables\Columns\TextColumn::make('id')
+                    ->label('ID')
+                    ->searchable(),
                 Tables\Columns\TextColumn::make('first_name')
                     ->searchable(),
                 Tables\Columns\TextColumn::make('last_name')
@@ -89,6 +93,7 @@ class CustomerResource extends Resource
     {
         return [
             AddressRelationManager::class,
+            InteractionsRelationManager::class,
         ];
     }
 
